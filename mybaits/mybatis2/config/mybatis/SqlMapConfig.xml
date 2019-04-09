@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<settings>
+		<!-- 开启延迟加载 ，默认值为true-->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		
+		<!-- 设置积极的懒加载,默认是true -->
+		<setting name="aggressiveLazyLoading" value="false"/>
+		
+		<!-- 二级缓存的总开关 -->
+		<setting name="cacheEnabled" value="true"/>
+</settings>
+
+<typeAliases>
+	<package name="com.mybatis.po"/>
+</typeAliases>
+<!-- 配置mybatis的环境信息 -->
+<environments default="development">
+	<environment id="development">
+		<!-- 配置JDBC事务控制，由mybatis进行管理 -->
+		<transactionManager type="JDBC"></transactionManager>
+		<!-- 配置数据源，采用mybatis连接池 -->
+		<dataSource type="POOLED">
+			<property name="driver" value="com.mysql.jdbc.Driver"/>
+			<property name="url" value="jdbc:mysql://localhost:3306/sql_table?useUnicode=true&amp;characterEncoding=utf8"/>
+			<property name="username" value="root"/>
+			<property name="password" value="root"/>
+		</dataSource>
+	</environment>
+</environments>
+	<!-- 加载mapper -->
+	<mappers>
+		<!-- <mapper resource="mapper/UserMapper.xml"/> -->
+		<!-- 注意：此种方法要求mapper接口和mapper映射文件要名称相同，且放到同一个目录下；
+			批量加载映射文件 需要xml和接口同包下时使用 并把config下对应的xml删除即可 -->
+		<package name="com.mybatis.mapper"/>
+	</mappers>
+</configuration>

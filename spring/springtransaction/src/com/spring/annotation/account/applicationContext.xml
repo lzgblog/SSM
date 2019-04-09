@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       					   http://www.springframework.org/schema/beans/spring-beans.xsd
+       					   http://www.springframework.org/schema/aop 
+       					   http://www.springframework.org/schema/aop/spring-aop.xsd
+       					   http://www.springframework.org/schema/context 
+       					   http://www.springframework.org/schema/context/spring-context.xsd
+       					   http://www.springframework.org/schema/tx 
+       					   http://www.springframework.org/schema/tx/spring-tx.xsd
+       					   ">
+ 	<!-- 创建service对象 -->
+ 	<bean class="com.spring.annotation.account.AccountServiceImpl" id="accountService">
+ 		<property name="accountDao" ref="accountDao"></property>
+ 	</bean>
+ 	<!-- 创建Dao对象 -->
+ 	<bean class="com.spring.annotation.account.AccountDaoImpl" id="accountDao">
+ 		<property name="dataSource" ref="dataSource"></property>
+ 	</bean>
+ 	
+ 	<!-- 创建数据源 -->
+ 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
+ 		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+ 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mydb2"></property>
+ 		<property name="user" value="root"></property>
+ 		<property name="password" value="root"></property>
+ 	</bean>
+ 	
+ 	
+ 	<!-- 创建事务管理器  需要开启事务    开启事务需要connection连接    连接需要数据源 -->
+ 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="txManager">
+ 		<property name="dataSource" ref="dataSource"></property>
+ 	</bean>
+ 	<tx:annotation-driven transaction-manager="txManager"/>
+</beans>

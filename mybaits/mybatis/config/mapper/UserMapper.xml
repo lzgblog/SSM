@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mybatis.dao.MapperDao">
+	<select id="findUserById" parameterType="int" resultType="com.mybatis.po.User">
+		SELECT * FROM USER WHERE id=#{id}
+	</select>
+   <insert id="insertUser" parameterType="com.mybatis.po.User">
+		INSERT INTO USER(username,birthday,sex,address) VALUES(#{username},#{birthday},#{sex},#{address})
+	</insert> 
+	<!-- (int类型)简单类型输出 -->
+	<select id="findUserCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM USER WHERE username=#{username};
+	</select>
+	<!-- resultMap 使用别名时-->
+	<resultMap type="User" id="result">
+		<result column="user_" property="username"/>
+		<result column="sex_" property="sex"/>
+	</resultMap>
+	<select id="findUserByResultMap" parameterType="int" resultMap="result">
+		SELECT username user_,sex sex_ FROM USER WHERE id=#{id}
+	</select>
+	
+	
+	<!-- 动态sql -->
+	<!-- where/if方式 -->
+	<!-- <select id="findUserByNameAndSex" parameterType="com.mybatis.po.User" resultType="com.mybatis.po.User">
+	
+	SELECT * FROM USER  
+	<where>
+
+		<if test="username!=null and username != ''">
+			and username = #{username}
+		</if>
+		<if test="sex!=null and sex != ''">
+			and sex=#{sex} 
+		</if>
+	
+	</where>
+	</select> -->
+	<!-- sql片段方式 -->
+	<select id="findUserByNameAndSex" parameterType="com.mybatis.po.User" resultType="com.mybatis.po.User">
+		SELECT * FROM USER  
+		<where>
+		<!-- 引入sql片段 -->
+			<include refid="sqlId"></include>
+		</where>
+	</select>
+	<sql id="sqlId">
+		<if test="username!=null and username != ''">
+			and username = #{username}
+		</if>
+		<if test="sex!=null and sex != ''">
+			and sex=#{sex} 
+		</if>
+	</sql>
+	<!-- foreach方式 -->
+	<select id="findUserByManyId" parameterType="com.mybatis.po.User" resultType="com.mybatis.po.User">
+		
+		<!-- SELECT * FROM USER WHERE id IN(1,2) -->
+		SELECT * FROM USER
+		<where>
+		<if test="idlist!=null">
+			and id IN
+			<!-- collection:表示po类中集合属性的属性名称叫idlist -->
+			<!-- item:遍历出的结果声明一个变量名称 -->
+			<!-- open:遍历开始时，需要拼接的字符串 -->
+			<!-- close:遍历结束时，需要拼接的字符串 -->
+			<!-- separator:遍历中间的分割符 -->
+		<foreach collection="idlist" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+		</if>
+		</where>
+	</select>
+</mapper>

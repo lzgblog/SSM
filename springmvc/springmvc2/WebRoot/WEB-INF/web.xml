@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>springmvc2</display-name>
+ <!-- 配置前端控制器 -->
+ <servlet>
+ 	<servlet-name>springmvc</servlet-name>
+ 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+ 	<!-- 加载springmvc.xml -->
+ 	<!-- 这里是加载sprin.xml,配置文件的 -->
+ 		<!-- 默认是在web-inf下面的，你写这个是让它找配置文件 -->
+ 	<init-param>
+ 		<param-name>contextConfigLocation</param-name>
+ 		<param-value>classpath:springmvc.xml</param-value>
+ 	</init-param>
+ </servlet>
+ 
+ <servlet-mapping>
+ 	<servlet-name>springmvc</servlet-name>
+ 	<url-pattern>*.do</url-pattern>
+ </servlet-mapping>
+</web-app>
