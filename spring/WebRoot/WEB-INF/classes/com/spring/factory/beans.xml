@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- 
+		将工厂创建的实例交予spring 
+		class 确定工厂全限定类名
+		factory-method 确定方法名
+		factory-bean   确定工厂实例 c
+	-->
+	<!-- 创建工厂实例 -->
+		<!-- 实例化方式   实例工厂 -->
+<bean id="factory" class="com.spring.factory.Factory"></bean>
+<bean id="bookService" factory-bean="factory" factory-method="createService"></bean>
+
+</beans>

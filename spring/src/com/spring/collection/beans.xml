@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- 
+		集合的注入都是给<property>添加子标签
+			数组：<array>
+			List：<list>
+			Set：<set>
+			Map：<map> ，map存放k/v 键值对，使用<entry>描述
+			Properties：<props>  <prop key=""></prop>  【】
+			
+		普通数据：<value>
+		引用数据：<ref>
+	-->
+		
+		<!-- 集合注入 -->
+		<bean class="com.spring.collection.User" id="user">
+			<property name="arraydata">
+			<!-- array集合 -->
+				<array>
+					<value>张三</value>
+					<value>李四</value>
+				</array>
+			</property>
+			<property name="listdate">
+			<!-- list集合 -->
+				<list>
+					<value>三玖</value>
+					<value>四月</value>
+				</list>
+			</property>
+			<property name="mapdata">
+			<!-- map集合 -->
+				<map>
+					<entry key="江南" value="龙族"></entry>
+					<entry key="伏见" value="俺妹"></entry>
+				</map>
+			</property>
+			<property name="prop">
+				<props>
+					<prop key="渡航">春物</prop>
+					<prop key="丸户史明">路人女主</prop>
+				</props>
+			</property>
+		</bean>
+</beans>

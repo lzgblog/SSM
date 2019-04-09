@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<!-- init-method 目标方法执行之前执行
+			destroy-method   销毁spring容器之后执行
+		 -->
+		 	<!-- 生命周期-->
+	<bean class="com.spring.lifecycle.BookServiceImpl" id="bookService"  init-method="init" destroy-method="destroy"></bean>
+	<!-- spring 自动执行 -->
+	<bean class="com.spring.lifecycle.MyBeanPostProcessor"></bean>
+
+</beans>

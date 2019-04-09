@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<!-- 基于xml属性依赖注入-》setter方法  -->
+		<!-- setter方法注入 -->
+		
+		<bean class="com.spring.setter.User" id="user">
+			<property name="name" value="tom"></property>
+			<property name="age" value="18"></property>
+			<property name="homeAddr" ref="homeAddrId"></property>
+			<property name="comAddr" ref="comAddrId"></property>
+		</bean>
+		<!-- Address对象里的设置属性 -->
+		<bean class="com.spring.setter.Address" id="homeAddrId">
+			<property name="addr" value="上海"></property>
+			<property name="tel" value="120"></property>
+		</bean>
+		<bean class="com.spring.setter.Address" id="comAddrId">
+			<property name="addr" value="广州"></property>
+			<property name="tel" value="199"></property>
+		</bean>
+</beans>
