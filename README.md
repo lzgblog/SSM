@@ -17,3 +17,16 @@ https://blog.csdn.net/leader_song/article/details/132094080?ops_request_misc=%25
 ### 4.高性能缓存Caffeine
 
 https://ghh3809.github.io/2021/05/31/caffeine/
+
+### 5.curl
+
+ curl -k -X POST \
+  https://7.185.126.84:32185/energydesignservice/v1/common/file/upload \
+  -H 'Content-Type: multipart/form-data' \
+  -H 'Postman-Token: 593b23cb-8786-4ed1-9b1a-d19e63354bcb' \
+  -H 'X-Access-User: eyJ0ZW5hbnRJZCI6IjEwMDIiLCJ1c2VySWQiOiIxNjg5Mjk4Mjg4MDIxMTk2OTgxIiwidGVuYW50QWNjb3VudCI6Im5ldGxpdmVhZG1pbiIsInN0YXR1cyI6IiIsInVzZXJOYW1lIjoibHV6aGlnYW5nIiwidXNlckFjY291bnQiOiJsV1gxMjI4OTMxIiwicm9sZXMiOltdfQ==' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -F 'multipartFile=@/opt/paas/sys/log/energydesignservice/PV70_6PV-4L-30-32W-2.5S.rar'
+  
+  
